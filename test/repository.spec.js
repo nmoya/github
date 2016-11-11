@@ -304,6 +304,16 @@ describe('Repository', function() {
             }));
       });
 
+      it('add collaborator to repository', function(done) {
+         const options = {username: 'marwan-at-work', permission: 'admin'};
+         remoteRepo.addCollaborator(options, assertSuccessful(done));
+      });
+
+      it('should remove collaborator from repository', function(done) {
+         const options = {username: 'marwan-at-work'};
+         remoteRepo.removeCollaborator(options, assertSuccessful(done));
+      });
+
       it('should show repo collaborators', function(done) {
          remoteRepo.getCollaborators(assertSuccessful(done, function(err, collaborators) {
             if (!(collaborators instanceof Array)) {
